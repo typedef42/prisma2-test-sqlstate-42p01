@@ -1,0 +1,33 @@
+version: '3.3'
+
+services:
+  postgres:
+    image: 'postgres'
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: prisma2-test
+    networks:
+      infra:
+    ports:
+      - '54320:5432'
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@test.com
+      PGADMIN_DEFAULT_PASSWORD: password
+    ports:
+      - '16042:80'
+    networks:
+      infra:
+
+volumes:
+  postgres_data:
+    driver: local
+
+networks:
+  infra:
+    external: true
