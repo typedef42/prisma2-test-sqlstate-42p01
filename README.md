@@ -4,6 +4,7 @@
 
 ```shell
 yarn
+docker network create infra
 yarn run db:up
 ```
 
